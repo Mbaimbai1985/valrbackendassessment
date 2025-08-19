@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "f291f1c5-f7a2-47e6-b6df-033b3398782a",
+		"name": "VALR",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32953862",
+		"_collection_link": "https://sumertech.postman.co/workspace/SumerTech-Workspace~12453f41-6cb2-465f-a2fc-bf2c7378f347/collection/32953862-f291f1c5-f7a2-47e6-b6df-033b3398782a?action=share&source=collection_link&creator=32953862"
+	},
+	"item": [
+		{
+			"name": "orderbook",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huX2RvZSIsImlhdCI6MTc1NTI1NDg0NSwiZXhwIjoxNzU1MzQxMjQ1fQ.SfspqXr3Kkto89zp7c4nZVAJgTJsqRdiIrYDtMxDDG4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080 /api/v1/{currencyPair}/orderbook",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080 ",
+					"path": [
+						"api",
+						"v1",
+						"{currencyPair}",
+						"orderbook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place first buy order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"side\": \"buy\",\r\n    \"currencyPair\": \"BTCZAR\",\r\n    \"price\": 100000,\r\n    \"quantity\": 0.1\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders/limit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"limit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place second buy order at lower price",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"side\": \"buy\",\r\n    \"currencyPair\": \"BTCZAR\", \r\n    \"price\": 99000,\r\n    \"quantity\": 0.05\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders/limit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"limit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place sell order at higher price (no match)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"side\": \"sell\",\r\n    \"currencyPair\": \"BTCZAR\",\r\n    \"price\": 101000,\r\n    \"quantity\": 0.08\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders/limit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"limit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place matching sell order (will execute trade)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"side\": \"sell\",\r\n    \"currencyPair\": \"BTCZAR\",\r\n    \"price\": 100000,\r\n    \"quantity\": 0.05\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/orders/limit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"orders",
+						"limit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Updated Order Book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/BTCZAR/orderbook",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"BTCZAR",
+						"orderbook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Trade History",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/BTCZAR/tradehistory?limit=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"BTCZAR",
+						"tradehistory"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "orderbook",
+			"name": "Test Empty Order Book",
 			"request": {
 				"auth": {
 					"type": "bearer",
